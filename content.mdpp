@@ -1,0 +1,29 @@
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Writing a coding-style
+# checker using clang
+
+.llvm[![LLVM](sources/llvm.png)]
+
+##### Francis Visoiu Mistrih - <francis@lse.epita.fr>
+
+---
+
+---
+
+#### References
+
+.urls[
+* https://github.com/thegameg/cast-matcher
+* http://clang.llvm.org/docs/LibASTMatchersReference.html
+]
+
+## Any questions?
+
+###### <francis@lse.epita.fr>
+
+.twitter[[@thegameg](https://twitter.com/thegameg)]
+
+.footnote[Slideshow created using [remark](http://github.com/gnab/remark).]
