@@ -1,0 +1,9 @@
+TranslationUnitDecl 0xebd4f0 <<invalid sloc>> <invalid sloc>
+`-FunctionDecl 0xebdee0 <cast.c:1:1, line:4:1> line:1:6 foo 'void (int *)'
+ |-ParmVarDecl 0xebde20 <col:10, col:15> col:15 used n 'int *'
+ `-CompoundStmt 0xebe0d0 <line:2:1, line:4:1>
+  `-DeclStmt 0xebe0b8 <line:3:3, col:23>
+   `-VarDecl 0xebdfe0 <col:3, col:22> col:9 bp 'char *' cinit
+*   `-CStyleCastExpr 0xebe090 <col:14, col:22> 'char *' <BitCast>
+     `-ImplicitCastExpr 0xebe078 <col:22> 'int *' <LValueToRValue>
+      `-DeclRefExpr 0xebe040 <col:22> 'int *' lvalue ParmVar 0xebde20 'n' 'int *'

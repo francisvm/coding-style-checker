@@ -1,0 +1,126 @@
+## clang
+
+* "compiler"
+
+* open source
+
+* C language family frontend for LLVM
+
+* C / C++ / Objective C
+
+---
+
+.llvm[![LLVM](sources/llvm.png)]
+
+## LLVM
+
+* collection of compiler technologies
+
+* open source
+
+* modular
+
+* released as libraries + tools
+
+---
+
+## C source
+
+##### cast.c - C
+
+```c++
+!INCLUDE "sources/cast.c.modified"
+```
+
+---
+
+## Result
+
+##### ./coding-style cast.c
+
+```x86
+42sh$ ./coding-style cast.c
+cast.c:3:14: error: Explicit casts are forbidden.
+* char *bp = (char *)n;
+             ^~~~~~~~~
+1 error generated.
+Error while processing cast.c.
+```
+
+---
+
+## How ?
+
+Regex ?
+
+```
+\((int|char|float)\*?\)
+```
+
+--
+
+What about typedefs ?
+
+```c
+typedef int integer_t;
+
+integer_t i = (integer_t)n;
+```
+
+---
+
+Catch all typedefs ?
+
+```c
+#define CAST(Var, Type) ((Type)(Var))
+
+integer_t i = CAST(n, integer_t *);
+```
+
+--
+
+Use preprocessed file ?
+
+```c
+void *p = NULL;
+```
+
+--
+
+expands to
+
+```c
+void *p = (void *)0;
+```
+
+---
+
+## What we need
+
+* Type information.
+
+* Macro expansion locations.
+
+* The "compiler" already has it.
+
+* The "frontend", specifically.
+
+---
+
+## C source
+
+##### cast.c - C
+
+```c++
+!INCLUDE "sources/cast.c.modified"
+```
+
+---
+
+## clang AST
+
+##### clang-check -ast-dump cast.c
+
+```clangast
+!INCLUDE "sources/cast.clang-check.modified"
+```
