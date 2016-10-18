@@ -1,0 +1,20 @@
+TranslationUnitDecl 0x1ebd4f0 <<invalid sloc>> <invalid sloc>
+|-TypedefDecl 0x1ebd9e8 <<invalid sloc>> <invalid sloc> implicit __int128_t '__int128'
+| `-BuiltinType 0x1ebd740 '__int128'
+|-TypedefDecl 0x1ebda48 <<invalid sloc>> <invalid sloc> implicit __uint128_t 'unsigned __int128'
+| `-BuiltinType 0x1ebd760 'unsigned __int128'
+|-TypedefDecl 0x1ebdad8 <<invalid sloc>> <invalid sloc> implicit __builtin_ms_va_list 'char *'
+| `-PointerType 0x1ebdaa0 'char *'
+|   `-BuiltinType 0x1ebd580 'char'
+|-TypedefDecl 0x1ebdd88 <<invalid sloc>> <invalid sloc> implicit __builtin_va_list 'struct __va_list_tag [1]'
+| `-ConstantArrayType 0x1ebdd30 'struct __va_list_tag [1]' 1 
+|   `-RecordType 0x1ebdbb0 'struct __va_list_tag'
+|     `-Record 0x1ebdb28 '__va_list_tag'
+`-FunctionDecl 0x1ebdee0 </home/francisvm/Projects/cs-clang/sources/cast.c:1:1, line:4:1> line:1:6 foo 'void (int *)'
+  |-ParmVarDecl 0x1ebde20 <col:10, col:15> col:15 used n 'int *'
+  `-CompoundStmt 0x1ebe0d0 <line:2:1, line:4:1>
+    `-DeclStmt 0x1ebe0b8 <line:3:3, col:23>
+      `-VarDecl 0x1ebdfe0 <col:3, col:22> col:9 bp 'char *' cinit
+        `-CStyleCastExpr 0x1ebe090 <col:14, col:22> 'char *' <BitCast>
+          `-ImplicitCastExpr 0x1ebe078 <col:22> 'int *' <LValueToRValue>
+            `-DeclRefExpr 0x1ebe040 <col:22> 'int *' lvalue ParmVar 0x1ebde20 'n' 'int *'
