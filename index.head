@@ -34,7 +34,7 @@
       .remark-slide-content h3 { font-size: 1.6em; }
       .remark-code { text-align: left; }
       .remark-code-line-highlighted {
-        background: rgba(168, 0, 0, 0.1);
+        background: rgba(168, 0, 0, 0.4);
         -moz-box-shadow: 0 0 8px #111;
         -webkit-box-shadow: 0 0 8px #111;
         box-shadow: 0 0 8px #111;
