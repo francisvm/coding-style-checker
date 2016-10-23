@@ -1,7 +1,8 @@
 name: inverse
 layout: true
-class: center, middle, inverse
+class: center, inverse
 ---
+class: middle, center, inverse
 # Writing a coding-style
 # checker using clang
 

@@ -1,3 +1,5 @@
+class: middle, center, inverse
+
 ## clang
 
 * "compiler"
@@ -9,6 +11,7 @@
 * C / C++ / Objective C
 
 ---
+class: middle, center, inverse
 
 .llvm[![LLVM](sources/llvm.png)]
 
@@ -32,9 +35,7 @@
 !INCLUDE "sources/cast.c.modified"
 ```
 
----
-
-## Result
+--
 
 ##### ./coding-style cast.c
 
@@ -51,15 +52,26 @@ Error while processing cast.c.
 
 ## How ?
 
-Regex ?
+Regex ? Handle all types ?
 
 ```
-\((int|char|float)\*?\)
+(\(int\|char\|float\|double\|unsigned\|long\))
 ```
 
 --
 
-What about typedefs ?
+Handle pointers ? Handle all styles ?
+
+```
+(int *)
+(int*)
+(int **)
+(int**)
+```
+
+--
+
+Typedefs ? Parse all the headers ?
 
 ```c
 typedef int integer_t;
@@ -69,12 +81,12 @@ integer_t i = (integer_t)n;
 
 ---
 
-Catch all typedefs ?
+And macros ?
 
 ```c
 #define CAST(Var, Type) ((Type)(Var))
 
-integer_t i = CAST(n, integer_t *);
+integer_t *i = CAST(n, integer_t *);
 ```
 
 --
@@ -94,6 +106,7 @@ void *p = (void *)0;
 ```
 
 ---
+class: middle, center, inverse
 
 ## What we need
 
@@ -109,13 +122,103 @@ void *p = (void *)0;
 
 ## C source
 
-##### cast.c - C
+##### cast.c
 
 ```c++
 !INCLUDE "sources/cast.c.modified"
 ```
 
+--
+
+## clang AST
+
+##### clang-check -ast-dump cast.c
+
+```clangast
+!INCLUDE "sources/cast.clang-check.modified"
+```
+
 ---
+
+## C source
+
+##### cast.c
+
+```c++
+!INCLUDE "sources/cast.c.modified1"
+```
+
+## clang AST
+
+##### clang-check -ast-dump cast.c
+
+```clangast
+!INCLUDE "sources/cast.clang-check.modified1"
+```
+
+---
+
+## C source
+
+##### cast.c
+
+```c++
+!INCLUDE "sources/cast.c.modified2"
+```
+
+## clang AST
+
+##### clang-check -ast-dump cast.c
+
+```clangast
+!INCLUDE "sources/cast.clang-check.modified2"
+```
+
+---
+
+## C source
+
+##### cast.c
+
+```c++
+!INCLUDE "sources/cast.c.modified3"
+```
+
+## clang AST
+
+##### clang-check -ast-dump cast.c
+
+```clangast
+!INCLUDE "sources/cast.clang-check.modified3"
+```
+
+---
+
+## C source
+
+##### cast.c
+
+```c++
+!INCLUDE "sources/cast.c.modified4"
+```
+
+## clang AST
+
+##### clang-check -ast-dump cast.c
+
+```clangast
+!INCLUDE "sources/cast.clang-check.modified4"
+```
+
+---
+
+## C source
+
+##### cast.c
+
+```c++
+!INCLUDE "sources/cast.c.modified"
+```
 
 ## clang AST
 
