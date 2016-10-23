@@ -122,18 +122,19 @@
         margin: 0 auto;
         max-width: 80%;
       }
-      .twitter {
-        font-size: 9pt;
+      .twitter * {
+        color: #00aced;
+        font-size: 10pt;
       }
       .llvm img {
         max-width:25%;
       }
       .urls {
-        padding-bottom: 30px;
+        padding-bottom: 10px;
       }
       .urls * {
-        font-size: 8pt;
-        text-align: left;
+        font-size: 10pt;
+        text-align: center;
       }
 
     </style>
