@@ -1,5 +1,22 @@
 class: middle, center, inverse
 
+## Coding style
+
+#### 6.1 Casts
+
+##### casts
+
+```
+As a general rule, C casts MUST NOT be used.
+```
+
+```
+Rationale: good programming behavior includes proper type handling.
+```
+
+---
+class: middle, center, inverse
+
 ## clang
 
 * "compiler"
