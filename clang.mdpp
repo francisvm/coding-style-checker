@@ -244,3 +244,151 @@ class: middle, center, inverse
 ```clangast
 !INCLUDE "sources/cast.clang-check.modified"
 ```
+
+---
+
+## Match the AST
+
+```c++
+void matchNode(Expr *node) {
+  if (isa<CStyleCastExpr>(node)) {
+    // check if the expansion comes from system headers.
+    // report error here.
+  }
+}
+```
+
+--
+
+### More nodes
+
+```c++
+void matchNode(Stmt *node) {
+  if (isa<AsmStmt>(node)) {
+    // check if the expansion comes from system headers.
+    // report error here.
+  } else if (isa<GotoStmt>(node)) {
+    // check if the expansion comes from system headers.
+    // report error here.
+  }
+}
+```
+
+--
+
+Basically, it sucks.
+
+---
+
+## AST Matchers
+
+* Match every `CStyleCastExpr` unless it's coming from system headers.
+
+--
+
+```c++
+auto CastMatcher = cStyleCastExpr(unless(isExpansionInSystemHeader()));
+```
+
+--
+
+* Match all the `AsmStmt` unless they come from system headers.
+
+--
+
+```c++
+auto AsmMatcher = asmStmt(unless(isExpansionInSystemHeader()));
+```
+
+--
+
+* Match all the `GotoStmt` unless they come from system headers.
+
+--
+
+```c++
+auto GotoMatcher = gotoStmt(unless(isExpansionInSystemHeader()));
+```
+
+--
+
+```c++
+MatchFinder Finder;
+Finder.addMatcher(CastMatcher);
+Finder.addMatcher(AsmMatcher);
+Finder.addMatcher(GotoMatcher);
+```
+
+---
+class: middle, center, inverse
+
+## C++, my love
+
+* We want maintainable and simple code.
+
+* Even if the internals are ugly.
+
+* We want custom error messages.
+
+* We want custom rule names.
+
+--
+
+```
+auto CastMatcher =
+        Match<CStyleCastExpr>(cStyleCastExpr(unless(isExpansionInSystemHeader())),
+                              "6.1.casts",
+                              "Explicit casts are forbidden.");
+```
+
+---
+class: middle, center, inverse
+
+## More
+
+* Many, many existing matchers.
+
+```
+asmStmt, cStyleCastExpr, functionDecl, parmVarDecl, isImplicit,
+compoundStmt, whileStmt, forStmt, ifStmt, hasDescendant, hasType,
+isEnum, variableArrayType, etc.
+```
+
+* Create your own matcher.
+
+* Contribute it to `clang`'s library.
+
+---
+
+Example
+
+```c++
+#define LINE(X) (SM.getPresumedLoc((X)).getLine())
+
+AST_MATCHER(Stmt, expandsOnMultipleLines) {
+  auto &SM = Finder->getASTContext().getSourceManager();
+  return LINE(Node.getLocStart()) != LINE(Node.getLocEnd());
+}
+```
+
+--
+
+Usage
+
+```c++
+auto matcher = returnStmt(expandsOnMultipleLines());
+```
+
+--
+
+Matches
+
+```c++
+int foo(int i) {
+  if (i < 2)
+    return 1;
+  else
+*   return 1
+*     + 2;
+}
+```
