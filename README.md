@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thegameg/coding-style-checker.svg?branch=master)](https://travis-ci.org/thegameg/coding-style-checker)
+
 # Writing a coding-style checker using clang
 
 Check it out [here](https://thegameg.github.io/coding-style-checker/).
