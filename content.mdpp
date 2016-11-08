@@ -17,14 +17,6 @@ class: middle, center, inverse
 ---
 class: middle, center, inverse
 
-![cast](sources/cast.png)
-
-### Any questions?
-
-##### <francis@lse.epita.fr>
-
-.twitter[[@thegameg](https://twitter.com/thegameg)]
-
 #### References
 
 .urls[
@@ -34,3 +26,14 @@ http://clang.llvm.org/docs/LibASTMatchersReference.html
 ]
 
 .footnote[Slideshow created using [remark](http://github.com/gnab/remark).]
+
+---
+class: middle, center, inverse
+
+![cast](sources/cast.jpg)
+
+### Any questions?
+
+##### <francis@lse.epita.fr>
+
+.twitter[[@thegameg](https://twitter.com/thegameg)]
