@@ -73,7 +73,7 @@ Error while processing cast.c.
 Regex ? Handle all types ?
 
 ```
-(\(int\|char\|float\|double\|unsigned\|long\))
+\((int|char|float|double|unsigned|long)\)
 ```
 
 --
@@ -104,7 +104,7 @@ And macros ?
 ```c
 #define CAST(Var, Type) ((Type)(Var))
 
-integer_t *i = CAST(n, integer_t *);
+int *i = CAST(n, int *);
 ```
 
 --
@@ -120,7 +120,15 @@ void *p = NULL;
 expands to
 
 ```c
-void *p = (void *)0;
+void *p = ((void *)0);
+```
+
+--
+
+C++
+
+```c++
+std::function<int(float)>
 ```
 
 ---
@@ -336,10 +344,9 @@ class: middle, center, inverse
 --
 
 ```
-auto CastMatcher =
-        Match<CStyleCastExpr>(cStyleCastExpr(unless(isExpansionInSystemHeader())),
-                              "6.1.casts",
-                              "Explicit casts are forbidden.");
+auto m = Match(cStyleCastExpr(unless(isExpansionInSystemHeader())),
+               "6.1.casts",
+               "Explicit casts are forbidden.");
 ```
 
 ---
